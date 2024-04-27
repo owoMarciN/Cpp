@@ -2,7 +2,7 @@
 
 int Parent(int i){ return i/2;}
 int Left(int i){ return 2 * i;}
-int Right(int i){ return 2 * i + 1; }
+int Right(int i){ return 2 * i + 1;}
 
 void HeapSort(Heap &heap){
     BuildMaxHeap(heap, heap.A.size());
