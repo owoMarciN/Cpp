@@ -43,6 +43,7 @@ int HoarePartition(std::vector<int> &A, int start, int end){
 		if(i >= j)	
 			return j;
 		std::swap(A[i], A[j]);
+	}
 		/* 
 		Last 3 lines can be also:
 		1.	if(i < j)
@@ -50,7 +51,6 @@ int HoarePartition(std::vector<int> &A, int start, int end){
 		3.	else 
 		4.		return j;
 		*/
-	}
 }
 
 void QuickSortHoare(std::vector<int> &A, int start, int end){
