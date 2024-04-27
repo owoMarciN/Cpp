@@ -70,36 +70,36 @@ void printVector(std::vector<int> A){
 int main(){
 	int vectorSize;
 	std::vector<int> A;
-    srand(time(NULL));
-
-  	std::cout<< "Provide the size of the array: ";
-  	std::cin >> vectorSize;
-
+	srand(time(NULL));
+	
+	std::cout<< "Provide the size of the array: ";
+	std::cin >> vectorSize;
+	
 	std::cout << "\nUsing Lomuto-Partition." << std::endl;
-
-  	for(int i = 0; i < vectorSize; i++)
-    	A.push_back(rand() % 200 + 1);
-
-    std::cout << "Before:\n";
-    printVector(A);
-
-  	QuickSortLomuto(A, 0, A.size()-1);
-
-    std::cout << "After:\n";
-  	printVector(A);
-
+	
+	for(int i = 0; i < vectorSize; i++)
+	A.push_back(rand() % 200 + 1);
+	
+	std::cout << "Before:\n";
+	printVector(A);
+	
+	QuickSortLomuto(A, 0, A.size()-1);
+	
+	std::cout << "After:\n";
+	printVector(A);
+	
 	std::cout << "\nUsing Hoare-Partition." << std::endl;
-
+	
 	for(int i = 0; i < A.size(); i++)
-    	A[i] = rand() % 200 + 1;
-
-    std::cout << "Before:\n";
-    printVector(A);
-
-  	QuickSortHoare(A, 0, A.size()-1);
-
-    std::cout << "After:\n";
-  	printVector(A);
-
-  	return 0;
+	A[i] = rand() % 200 + 1;
+	
+	std::cout << "Before:\n";
+	printVector(A);
+	
+	QuickSortHoare(A, 0, A.size()-1);
+	
+	std::cout << "After:\n";
+	printVector(A);
+	
+	return 0;
 }
