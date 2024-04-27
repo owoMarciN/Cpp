@@ -24,35 +24,30 @@ void quick_sort(int *tab, int start, int end){
 	quick_sort(tab, pivot+1, end);
 }
 
-
-
 int main(){
-
-	int *tab, n;
+    int *tab, n;
     srand(time(NULL));
 
-  	std::cout<< "How many random numbers to sort?: ";
-  	std::cin >> n;
+    std::cout<< "How many random numbers you want to sort?: ";
+    std::cin >> n;
 
-  	tab = new int [n];
-
-  	for(int i = 0; i < n; i++)
-    	tab[i] = rand() % 500 +1;
-
-    std::cout << "Before:\n";
+    tab = new int [n];
 
     for(int i = 0; i < n; i++)
+    	tab[i] = rand() % 500 + 1;
+
+    std::cout << "Before:\n";
+    for(int i = 0; i < n; i++)
           std::cout << tab[i] << " ";
-
-  	quick_sort(tab, 0, n-1);
-
-    std::cout << "\nAfter:\n";
-
-  	for(int i = 0; i < n; i++)
-          std::cout << tab[i] << " ";
-          
     std::cout << std::endl;
 
-	delete [] tab;
-  	return 0;
+    quick_sort(tab, 0, n-1);
+
+    std::cout << "After:\n";
+    for(int i = 0; i < n; i++)
+          std::cout << tab[i] << " ";
+    std::cout << std::endl;
+
+    delete [] tab;
+    return 0;
 }
