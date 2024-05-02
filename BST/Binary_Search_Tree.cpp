@@ -54,36 +54,6 @@ int main(){
         }
         else
             std::cout << "Error: This node doesn't exists!\n";
-
-        std::cout << "What node would you like to rotate right?: ";
-        std::cin >> to_search;
-        z = T.SEARCH(T.root, to_search);
-        if(z != NULL){
-            std::cout << "Right rotate of " << z->key << ":\n";
-            T.RightRotate(z); 
-            std::cout << "Tree after right rotation:\n";
-            T.drawTree(T.root, 0);
-            std::cout << "Inorder: " << std::endl;
-            T.InOrder(T.root);
-            std::cout << std::endl;
-        }
-        else
-            std::cout << "Error: This node doesn't exists!\n";
-
-        std::cout << "What node would you like to rotate left?:\n";
-        std::cin >> to_search;
-        z = T.SEARCH(T.root, to_search);
-        if(z != NULL){
-            std::cout << "Left rotate of " << z->key << ": ";
-            T.LeftRotate(z); 
-            std::cout << "Tree after left rotation:\n";
-            T.drawTree(T.root, 0);
-            std::cout << "Inorder: " << std::endl;
-            T.InOrder(T.root);
-            std::cout << std::endl;
-        }
-        else
-            std::cout << "Error: This node doesn't exists!\n";
     }
     else
         std::cout << "Error!\n";
