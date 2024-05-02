@@ -3,6 +3,8 @@
 
 /// LIBRARIES ///
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 /// CONSTANTS ///
 const int count = 10;
@@ -10,26 +12,47 @@ const int count = 10;
 /// CLASSES ///
 class Node{
 public:
+
     int key;
+    Node * parent;
     Node * left;
     Node * right;
+
 };
 
 class BST{
 public:
+
     Node * root = nullptr;
-    int MaxKey();
-    int MinKey();
-    bool searchTree(Node * root, int value);
-    Node * insertNode(Node * &node, int value);
-    void deleteNode(Node * root, int value);
-    Node * Precessor(Node * root);
-    Node * Successor(Node * root);
-    void InOrder(Node * root, int space);
-    void InOrder(Node * root);
-    void PreOrder(Node * root);
-    void PostOrder(Node * root);
-    //void insertNode(int value);
+    
+    bool searchTree(Node * x, int key);
+    void RecursiveTreeInsert(Node * z);
+    void drawTree(Node * root, int space);
+    // void deleteNode(Node * root, int value);
+    int Maximum(Node * x);
+    int Minimum(Node * x);
+    int Predecessor(Node * x);
+    int Successor(Node * x);
+
+    void InOrder(Node * x);
+    void PreOrder(Node * x);
+    void PostOrder(Node * x);
+
+    void RightRotate(Node * y);
+    void LeftRotate(Node * y);
+
+    Node * SEARCH(Node * x, int key);
+
+private:
+
+    void INSERT(Node * p, Node * x, Node * z);
+    Node * MAXIMUM(Node * x);
+    Node * MINIMUM(Node * x);
+    Node * PREDECESSOR(Node * x);
+    Node * SUCCESSOR(Node * x);
+
 };
+
+Node * createNode(int value);
 
 #endif
