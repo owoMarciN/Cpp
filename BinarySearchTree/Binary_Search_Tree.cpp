@@ -106,6 +106,7 @@ int main(){
     std::cout << '\n';
 
     // DELETION OF A NODE
+    
     std::cout << "Deleting node with the value \'17\':\n";
     z = T.getElementByValue(17);
     T.DeleteNode(z);
