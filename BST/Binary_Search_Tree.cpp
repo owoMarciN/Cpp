@@ -1,49 +1,91 @@
 #include "BST.h"
 
 int main(){
-    BST Tree;
-    
+    BST T;
     int to_search;
-    int node_num = 7;
-
+    int node_num = 10;
     srand(time(NULL));
 
-    // std::cout << "How many nodes should the tree have?" << std::endl;
-    // std::cin >> node_num;
-
-    for(int i = 0; i < node_num; i++){
-        Tree.insertNode(Tree.root, rand() % 100+1);
-    }
-
-    if(Tree.root){
-        std::cout << "Tree form left to right:\n" << std::endl;
-        Tree.InOrder(Tree.root, 0);
-        std::cout << std::endl;
-
-        std::cout << "Maximum: " << Tree.MaxKey() << std::endl;
-        std::cout << "Minimum: " << Tree.MinKey() << std::endl;
-
-        // std::cout << "What number you want to search for?" << std::endl;
-        // std::cin >> to_search;
-        // if(Tree.searchTree(Tree.root, to_search)){
-        //     std::cout << "Number \'" << to_search << "\' was found!" << std::endl;
-        // }
-        // else{
-        //     std::cout << "There's no \'" << to_search << "\' number in this tree!" << std::endl;
-        // }
-        std::cout << "Inorder" << std::endl;
-        Tree.InOrder(Tree.root);
-        std::cout << std::endl;
-        std::cout << "Preorder" << std::endl;
-        Tree.PreOrder(Tree.root);
-        std::cout << std::endl;
-        std::cout << "Postorder" << std::endl;
-        Tree.PostOrder(Tree.root);
-        std::cout << std::endl;
-    }
-    else{
-        std::cout << "Error!" << std::endl;
-    }
+    Node * z;
     
+    for(int i = 0; i < node_num; i++){
+        z = createNode(rand()%100 + 1);
+        T.RecursiveTreeInsert(z);
+    }
+
+    if(T.root){
+        std::cout << "Tree form left to right:\n\n";
+        T.drawTree(T.root, 0);
+        std::cout << '\n';
+
+        std::cout << "Maximum: " << T.Maximum(T.root) << '\n';
+        
+        std::cout << "Minimum: " << T.Minimum(T.root) << '\n';
+
+        std::cout << "What number you want to search for?" << '\n';
+        std::cin >> to_search;
+
+        if(T.searchTree(T.root, to_search))
+            std::cout << "Number \'" << to_search << "\' was found!\n" << '\n';
+        else
+            std::cout << "There's no \'" << to_search << "\' number in this tree!\n" << '\n';
+
+        std::cout << "TREE WALKS:\n";
+        std::cout << "Inorder\n";
+        T.InOrder(T.root);
+        std::cout << '\n';
+
+        std::cout << "Preorder\n";
+        T.PreOrder(T.root);
+        std::cout << '\n';
+
+        std::cout << "Postorder\n";
+        T.PostOrder(T.root);
+        std::cout << "\n\n";
+
+        std::cout << "Provide the node value to find it's Predecessor and Successor:\n";
+        std::cin >> to_search;
+
+        z = T.SEARCH(T.root, to_search);
+
+        if(z != NULL){
+            std::cout << "Predecessor of the node: " << T.Predecessor(z) << '\n'; 
+            std::cout << "Successor of the node: " << T.Successor(z) << '\n';
+        }
+        else
+            std::cout << "Error: This node doesn't exists!\n";
+
+        std::cout << "What node would you like to rotate right?: ";
+        std::cin >> to_search;
+        z = T.SEARCH(T.root, to_search);
+        if(z != NULL){
+            std::cout << "Right rotate of " << z->key << ":\n";
+            T.RightRotate(z); 
+            std::cout << "Tree after right rotation:\n";
+            T.drawTree(T.root, 0);
+            std::cout << "Inorder: " << std::endl;
+            T.InOrder(T.root);
+            std::cout << std::endl;
+        }
+        else
+            std::cout << "Error: This node doesn't exists!\n";
+
+        std::cout << "What node would you like to rotate left?:\n";
+        std::cin >> to_search;
+        z = T.SEARCH(T.root, to_search);
+        if(z != NULL){
+            std::cout << "Left rotate of " << z->key << ": ";
+            T.LeftRotate(z); 
+            std::cout << "Tree after left rotation:\n";
+            T.drawTree(T.root, 0);
+            std::cout << "Inorder: " << std::endl;
+            T.InOrder(T.root);
+            std::cout << std::endl;
+        }
+        else
+            std::cout << "Error: This node doesn't exists!\n";
+    }
+    else
+        std::cout << "Error!\n";
     return 0;
 }
