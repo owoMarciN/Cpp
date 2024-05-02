@@ -121,7 +121,7 @@ void BST::LeftRotate(Node * x){
     y->parent = x->parent;
     if(x->parent == NULL)
         root = y;
-    else if(x == x->parent->right)
+    else if(x == x->parent->left)
         x->parent->left = y;
     else 
         x->parent->right = y;
