@@ -163,7 +163,7 @@ Node * BST::MAXIMUM(Node * x){
 
 Node * BST::MINIMUM(Node * x){
     if(x->left != NULL)
-        return MAXIMUM(x->left);
+        return MINIMUM(x->left);
     else 
         return x;
 }
