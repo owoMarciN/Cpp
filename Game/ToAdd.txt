@@ -1,0 +1,130 @@
+//NO ANIMATIONS AND SOUND EFFECTS YET
+
+Graphics.h
+    #include <SDL/SDL2_ttf>
+    SDL_Texture * CreateTextTexture(TTF_Font * font, std::string text, SDL_Color color);
+
+Graphics.cpp
+    //Graphics::Init()
+
+    if(TTF_Init() == -1){
+        std::cout << "TTF Inicialization Error: " << TTF_GetError() << '\n';
+        return false;
+    }
+
+    //Graphics::~Graphics()
+
+    TTF_Quit();
+
+    SDL_Texture * Graphics::CreateTextTexture(TTF_Font * font, std::string text, SDL_Color color){
+        SDL_Surface * surface = TTF_RenderTextSolid(font, text.c_str(), color);
+        if(surface == NULL){
+            std::cout << "Text Render Error: " << TTF_GetError() << '\n';
+            return NULL;
+        }
+        SDL_Texture * Tex = SDL_CreateTextureFromSurface(mRenderer, surface);
+        if(Tex == NULL){
+            std::cout << "Text Texture Creation Error: " << SDL_GetError() << '\n';
+            SDL_FreeSurface(surface);
+            surface = NULL;
+            return NULL;
+        }
+        SDL_FreeSurface(surface);
+        return Tex;
+    }
+
+AssetManager.h
+    std::map<std::string, SDL_Texture*> mText;
+    std::map<std::string, TTF_Font*> mFonts;
+
+    //public:
+    SDL_Texture * GetText(std::string text, std::string file_name, int size, SDL_Color color);
+    //private:
+    TTF_Font * GetFont(std::string file_name, int size);
+
+AssetManager.cpp
+    TTF_Font * AssetManager::GetFont(std::string file_name, int size){
+        std::string fullpath = SDL_GetBasePath();
+        fullpath.append("./Images/" + fullpath);
+        std::string key = fullpath + (char)size;
+        if(mFonts == NULL){
+            mFonts[key] = TTF_OpenFont(fullpath.c_str(), size);
+            if(mFonts[key] == NULL){
+                std::cout << "Font Loading Error: Font: " << file_name.c_str() << " Error: " << TTF_GetError() << '\n';
+            }
+        }
+        return mFonts[key];
+    }
+
+    SDL_Texture * AssetManager::GetText(std::string text, std::string file_name, int size, SDL_Color color){
+        TTF_Font * font = GetFont(file_naem, size);
+        std::string key = text + file_name + (char)size + (char)color.r + (char)color.g + (char)color.b;
+        if(mText[key] == NULL)
+            mText[key] = Graphics::Instance()->CreateTextTexture(font, text, SDL_Color color);
+        return mText[key];
+    }
+
+    //At the end of AssetManagr::~AssetManager()
+    for(auto text : mText){
+        if(text.second != NULL){
+            SDL_DestroyTexture(text.second);
+        }
+    }
+    mText.clear();
+
+    for(auto font : mFonts){
+        if(font.second != NULL){
+            TTF_CloseFont(font.second);
+        }
+    }
+
+    mFonts.clear();
+
+Texture.h
+    Texture::Texture(std::string text, std::string fontpath, int size, SDL_Color color);
+
+Texture.cpp
+    Texture::Texture(std::string text, std::string fontpath, int size, SDL_Color color){
+        mGraphics = Graphics::Instance();
+        mTex = AssetManager::Instance()->GetText(text, fontpath, size, SDL_Color color);
+        mClipped = false;
+        SDL_QuaryTexture(mTex, NULL, NULL, &mWidth, &mHeight);
+
+        mRenderRect.w = mWidth;
+        mRenderRect.h = mHeight;
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+Graphics.h
+    void DrawTexture(SDL_Texture * tex, SDL_Rect * clip = NULL, SDL_Rect * rend = NULL, float angle = 0.0f, SDL_RendererFlip flip);
+
+    void DrawTexture(SDL_Texture * tex, SDL_Rect * clip = NULL, SDL_Rect * rend = NULL, float angle = 0.0f, SDL_RendererFlip flip){
+        SDL_RenderCopyEx(mRenderer, tex, clip, angle, NULL, flip);
+    }
+
+GameEntity.h
+    Vector2 mScale;
+
+    void Scale(Vector2 scale);
+
+    Vector2 Scale(SPACE space = world);
+
+GameEntity.cpp
+
+    void Scale(Vector2 scale){
+        mScale = scale;
+    }
+
+    Vector2 Scale(SPACE space){
+        if(Space == local || mParent == NULL)
+            return mScale;
+
+        Vactor2 parentScale = mParent->Scale(world);
+
+        return Vector2(parentScale.x + mScale.x, parentScale.y + mScale.y);
+    }
+
+
+
+
