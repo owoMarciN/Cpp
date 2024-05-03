@@ -33,6 +33,8 @@ namespace QuickSDL {
 
 		//Using Reset to initialize all the values beside mTimeScale
 		Reset();
+		mElapsedTicks = 0;
+		mDelataTime = 0.0f;
 		mTimeScale = 1.0f;
 	}
 
@@ -41,10 +43,7 @@ namespace QuickSDL {
 	}
 
 	void Timer::Reset() {
-
 		mStartTicks = SDL_GetTicks();
-		mElapsedTicks = 0;
-		mDelataTime = 0.0f;
 	}
 
 	float Timer::DeltaTime() {
