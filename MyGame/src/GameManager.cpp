@@ -72,7 +72,7 @@ namespace QuickSDL {
 	}
 
 	void GameManager::EarlyUpdate() {
-
+		mTimer->Reset();
 		//Updating the input state before any other updates are run to make sure the Input check is accurate
 		mInputMgr->Update();
 	}
@@ -85,9 +85,7 @@ namespace QuickSDL {
 	void GameManager::LateUpdate() {
 
 		//Any collision detection should happen here
-
 		mInputMgr->UpdatePrevInput();
-		mTimer->Reset();
 	}
 
 	void GameManager::Render() {
