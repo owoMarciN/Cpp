@@ -6,7 +6,7 @@ AnimatedTexture::AnimatedTexture(std::string filename, int x, int y, int w, int 
 	mTimer = Timer::Instance();
 
 	mStartX = x;
-    mStartY = y;
+   	mStartY = y;
 
 	mFrameCount = frameCount;
 	mAnimationSpeed = animationSpeed;
@@ -36,17 +36,16 @@ void AnimatedTexture::Update() {
 			if(mWrapMode == loop) {
 				mAnimationTimer -= mAnimationSpeed;
 			}
-            else{
+        		else{
 				mAnimationDone = true;
 				mAnimationTimer = mAnimationSpeed - mTimePerFrame;
 			}
 		}
-
 		if(mAnimationDirection == horizontal) {
 			mClippedRect.x = mStartX + (int)(mAnimationTimer / mTimePerFrame) * mWidth;
-    	}
-        else{
+    		}
+       		else{
 			mClippedRect.y = mStartY + (int)(mAnimationTimer / mTimePerFrame) * mHeight;
 		}
-    }
+    	}
 }
