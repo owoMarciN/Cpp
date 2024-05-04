@@ -3,7 +3,7 @@
 AudioManager* AudioManager::sInstance = NULL;
 
 AudioManager* AudioManager::Instance() {
-		//Create a new instance if no instance was created before
+	//Create a new instance if no instance was created before
 	if(sInstance == NULL)
 		sInstance = new AudioManager();
 	return sInstance;
@@ -30,7 +30,7 @@ AudioManager::~AudioManager() {
 
 void AudioManager::PlayMusic(std::string filename, int loops) {
 
-		//Play the Mix_Music* loaded in the AssetManager so that the file is not reloaded every time
+	//Play the Mix_Music* loaded in the AssetManager so that the file is not reloaded every time
 	Mix_PlayMusic(mAssetMgr->GetMusic(filename), loops);
 }
 
