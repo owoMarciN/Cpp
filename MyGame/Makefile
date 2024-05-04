@@ -16,7 +16,7 @@ SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
 
 # Executable name
-EXEC := my_program
+EXEC := MyGame
 
 # Targets
 all: $(EXEC)
