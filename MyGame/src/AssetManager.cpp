@@ -26,17 +26,17 @@ AssetManager::~AssetManager(){
     }
     mFonts.clear();
 
-//    for(auto music : mMusic) {
+//   for(auto music : mMusic) {
 
 // 		if(music.second != NULL) {
 
 // 			Mix_FreeMusic(music.second);
 // 		}
-// 	}
+// 	 }
 
-// 	mMusic.clear();
+// 	 mMusic.clear();
 
-// 	//Freeing all loaded sound effects
+//Freeing all loaded sound effects
 // 	for(auto sfx : mSFX) {
 
 // 		if(sfx.second != NULL) {
@@ -57,6 +57,7 @@ void AssetManager::Release(){
     delete sInstance;
     sInstance = NULL;
 }
+
 SDL_Texture * AssetManager::GetTexture(std::string file_name){
     std::string fullpath = SDL_GetBasePath();
     fullpath.append("./Assets/" + file_name);
@@ -91,7 +92,7 @@ SDL_Texture * AssetManager::GetText(std::string text, std::string file_name, int
 
 // Mix_Music* AssetManager::GetMusic(std::string filename) {
 
-// 		//Get the full path of the WAV file
+//      //Get the full path of the WAV file
 // 		std::string fullPath = SDL_GetBasePath();
 // 		fullPath.append("Assets/" + filename);
 
