@@ -7,8 +7,7 @@ GameEntity::GameEntity(Vector2 pos){
     mRotation = 0.0f;
     mActive = true;
     mScale = VEC2_ONE;
-    
- 
+
 }
 
 GameEntity::~GameEntity(){
@@ -24,7 +23,7 @@ Vector2 GameEntity::Pos(SPACE space){
         return mPos;
     
     Vector2 parentScale = mParent->Scale(world);
-    Vector2 rotPos = Vector2(mPos.x * parentScale.x, mPos.y * parentScale.y);
+    Vector2 rotPos(mPos.x * parentScale.x, mPos.y * parentScale.y);
     rotPos = Rotatevector(rotPos, mParent->Rotation(local));
 
     return mParent->Pos(world) + rotPos;
@@ -67,7 +66,7 @@ void GameEntity::Parent(GameEntity* parent){
         if(mParent != NULL)
             Parent(NULL);
         Vector2 parentScale = parent->Scale(world);
-        Vector2 pS = Vector2(Pos(world) - parent->Pos(world));
+        Vector2 pS(Pos(world) - parent->Pos(world));
         mPos = Rotatevector(pS, -parent->Rotation(world));
         mPos.x /= parentScale.x;
         mPos.y /= parentScale.y;
