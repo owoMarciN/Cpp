@@ -98,7 +98,7 @@ void GameEntity::Scale(Vector2 scale){
 }
 
 Vector2 GameEntity::Scale(SPACE space){
-    if(space == local || mParent == NULL)
+   	 if(space == local || mParent == NULL)
 		return mScale;
 	Vector2 scale = mParent->Scale(world);
 	scale.x *= mScale.x;
