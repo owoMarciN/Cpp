@@ -27,9 +27,7 @@ AssetManager::~AssetManager(){
     mFonts.clear();
 
    for(auto music : mMusic) {
-
 		if(music.second != NULL) {
-
 			Mix_FreeMusic(music.second);
 		}
 	}
@@ -38,7 +36,6 @@ AssetManager::~AssetManager(){
 
 	//Freeing all loaded sound effects
 	for(auto sfx : mSFX) {
-
 		if(sfx.second != NULL) {
 			Mix_FreeChunk(sfx.second);
 		}
@@ -96,7 +93,7 @@ Mix_Music* AssetManager::GetMusic(std::string filename) {
 	fullPath.append("Assets/" + filename);
 
 	//If the file has not been already loaded, load it and add it to the mMusic map
-	if(mMusic[fullPath] == nullptr) {
+	if(mMusic[fullPath] == NULL) {
 
 		mMusic[fullPath] = Mix_LoadMUS(fullPath.c_str());
 		//Error handling for file loading
@@ -115,7 +112,7 @@ Mix_Chunk* AssetManager::GetSFX(std::string filename) {
 		fullPath.append("Assets/" + filename);
 
 		//If the file has not been already loaded, load it and add it to the mSFX map
-		if(mSFX[fullPath] == nullptr) {
+		if(mSFX[fullPath] == NULL) {
 
 			mSFX[fullPath] = Mix_LoadWAV(fullPath.c_str());
 			//Error handling for file loading

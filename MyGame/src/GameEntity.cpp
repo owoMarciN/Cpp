@@ -7,11 +7,11 @@ GameEntity::GameEntity(Vector2 pos){
     mRotation = 0.0f;
     mActive = true;
     mScale = VEC2_ONE;
-
+    
 }
 
 GameEntity::~GameEntity(){
-    mParent = NULL;        
+    Parent(NULL);    
 }
 
 void GameEntity::Pos(Vector2 pos){
@@ -56,7 +56,7 @@ bool GameEntity::Active(){
     return mActive;
 }
 
-void GameEntity::Parent(GameEntity* parent){
+void GameEntity::Parent(GameEntity * parent){
     if(parent == NULL){
         mPos = Pos(world);
         mScale = Scale(world);
@@ -66,15 +66,15 @@ void GameEntity::Parent(GameEntity* parent){
         if(mParent != NULL)
             Parent(NULL);
         Vector2 parentScale = parent->Scale(world);
-        Vector2 pS(Pos(world) - parent->Pos(world));
-        mPos = Rotatevector(pS, -parent->Rotation(world));
+        Vector2 pom(Pos(world) - parent->Pos(world));
+        mPos = Rotatevector(pom, -parent->Rotation(world));
         mPos.x /= parentScale.x;
         mPos.y /= parentScale.y;
 
         mRotation = mRotation - parent->Rotation(world);
         mScale = Vector2(mScale.x / parentScale.x, mScale.y / parentScale.y);
     }
-    mParent = parent;
+    mParent = parent;  
 }
 
 GameEntity * GameEntity::Parent(){
@@ -89,8 +89,13 @@ void GameEntity::Render(){
 
 }
 
-void GameEntity::Translate(Vector2 vec){
-    mPos += vec;
+void GameEntity::Translate(Vector2 vec, SPACE space){
+    if(space == world){
+        mPos += vec;
+    }
+    else{
+        mPos += Rotatevector(vec, Rotation());
+    }
 }
 
 void GameEntity::Scale(Vector2 scale){
@@ -98,13 +103,14 @@ void GameEntity::Scale(Vector2 scale){
 }
 
 Vector2 GameEntity::Scale(SPACE space){
-   	 if(space == local || mParent == NULL)
-		return mScale;
+    if(space == local || mParent == NULL)
+			return mScale;
+
 	Vector2 scale = mParent->Scale(world);
 	scale.x *= mScale.x;
 	scale.y *= mScale.y;
 
-	return scale;
+    return scale;
 }
 
 void GameEntity::Rotate(float amount){

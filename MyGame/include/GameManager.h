@@ -1,15 +1,15 @@
 #ifndef GAMEMANAGER_H_
 #define GAMEMANAGER_H_
 
-#include "Texture.h"
 #include "Timer.h"
 #include "AudioManager.h"
 #include "InputManager.h"
+#include "ScreenManager.h"
 
 class GameManager{
 private:
 
-    const int FRAME_RATE= 60;
+    const int FRAME_RATE = 120;
 
     static GameManager * sInstance;
     bool mQuit;
@@ -21,8 +21,8 @@ private:
     AudioManager * mAudioMgr;
     
     SDL_Event mEvents;
-    Texture * mTex;
-    Texture * mShip;
+    ScreenManager *  mScreenMgr;
+    //Texture * mBackGround;
 
 public:
 

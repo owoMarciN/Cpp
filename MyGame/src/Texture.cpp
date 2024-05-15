@@ -27,15 +27,15 @@ Texture::Texture(std::string file_name, int x , int y, int w, int h){
 }
 
 Texture::~Texture(){
-    mTex = NULL;
+    mTex = nullptr;
     mGraphics = NULL;
 }
 
 void Texture::Render(){
     Vector2 pos = Pos(world);
     Vector2 scale = Scale(world);
-    mRenderRect.x = (int)(pos.x - mWidth*scale.x*0.5f);
-    mRenderRect.y = (int)(pos.y - mHeight*scale.y*0.5f);
+    mRenderRect.x = (int)(pos.x - (mWidth*scale.x*0.5f));
+    mRenderRect.y = (int)(pos.y - (mHeight*scale.y*0.5f));
 
     mRenderRect.w = (int)(mWidth*scale.x);
     mRenderRect.h = (int)(mHeight*scale.y);

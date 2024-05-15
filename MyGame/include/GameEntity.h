@@ -8,7 +8,7 @@ public:
 
     enum SPACE{local = 0, world = 1};
 
-private:
+private: // was private
 
     Vector2 mPos;
     float mRotation;
@@ -20,7 +20,7 @@ private:
 public:
 
     GameEntity(Vector2 pos = VEC2_ZERO);
-    ~GameEntity();
+    virtual ~GameEntity();
 
     void Pos(Vector2 pos);
     Vector2 Pos(SPACE space = world);
@@ -37,7 +37,7 @@ public:
     void Parent(GameEntity* parent);
     GameEntity * Parent();
 
-    void Translate(Vector2 vec);
+    void Translate(Vector2 vec, SPACE space = local);
     void Rotate(float amount);
 
     virtual void Update();

@@ -30,7 +30,11 @@ public:
 
     SDL_Texture * loadTexture(std::string path);
     void ClearBackBuffer(); // Clearing Canvas
+    
     void DrawTexture(SDL_Texture * tex, SDL_Rect * clip = NULL, SDL_Rect * rend = NULL, float angle = 0.0f, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    
+    void DrawLine(float x_0, float y_0, float x_1, float y_1);
+
     SDL_Texture * CreateTextTexture(TTF_Font * font, std::string text, SDL_Color color);
     // SDL_Surface * loadSurface(SDL_Surface * surface, char * file_name);
 private:

@@ -53,7 +53,7 @@ bool Graphics::Init(){
         return false;
     }
 
-    SDL_SetRenderDrawColor(mRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_SetRenderDrawColor(mRenderer, 0x00, 0x00, 0x00, 0x00);
 
     int flags = IMG_INIT_JPG;
     if(!IMG_Init(flags) && flags){
@@ -115,4 +115,12 @@ SDL_Texture * Graphics::CreateTextTexture(TTF_Font * font, std::string text, SDL
     }
     SDL_FreeSurface(surface);
     return Tex;
+}
+
+void Graphics::DrawLine(float x_0, float y_0, float x_1, float y_1){
+
+    SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_RenderDrawLine(mRenderer, x_0, y_0, x_1, y_1);
+    SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+
 }
