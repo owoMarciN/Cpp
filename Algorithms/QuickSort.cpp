@@ -13,6 +13,7 @@ int LomutoPartition(std::vector<int> &A, int start, int end){
 	i++;
 	std::swap(A[i], A[end]);
 	return i;
+	
 	/* 
 	Last 3 lines can be changed to: 
 	1.	std::swap(A[i + 1], A[end]);
@@ -44,13 +45,14 @@ int HoarePartition(std::vector<int> &A, int start, int end){
 			return j;
 		std::swap(A[i], A[j]);
 	}
-		/* 
-		Last 3 lines can be also:
-		1.	if(i < j)
-		2.		std::swap(A[i], A[j]);
-		3.	else 
-		4.		return j;
-		*/
+	
+	/* 
+	Last 3 lines can be also:
+	1.	if(i < j)
+	2.		std::swap(A[i], A[j]);
+	3.	else 
+	4.		return j;
+	*/
 }
 
 void QuickSortHoare(std::vector<int> &A, int start, int end){
