@@ -8,7 +8,6 @@ void SelectionSort(std::vector<int> &A){
         for (int j = i + 1; j < A.size(); j++){
             if (A[j] < A[jMin]){
                 jMin = j;
-                continue;
             }
         }
         if(A[i] != A[jMin]){
