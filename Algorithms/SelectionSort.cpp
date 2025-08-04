@@ -1,16 +1,16 @@
 #include <iostream>
 #include <vector>
 
-void SelectionSort(std::vector<int> &A){
-    int jMin = 0;
-    for (int i = 0; i < A.size(); i++){
-        jMin = i;
-        for (int j = i + 1; j < A.size(); j++){
-            if (A[j] < A[jMin]){
+void SelectionSort(std::vector<int>& A) {
+    const int n = A.size();
+    for (int i = 0; i < n - 1; ++i) {
+        int jMin = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (A[j] < A[jMin]) {
                 jMin = j;
             }
         }
-        if(A[i] != A[jMin]){
+        if (i != jMin) {
             std::swap(A[i], A[jMin]);
         }
     }
