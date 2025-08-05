@@ -10,15 +10,8 @@ int LomutoPartition(std::vector<int> &A, int start, int end){
 			std::swap(A[i], A[j]);
 		}
 	}
-	i++;
-	std::swap(A[i], A[end]);
-	return i;
-	
-	/* 
-	Last 3 lines can be changed to: 
-	1.	std::swap(A[i + 1], A[end]);
-	2.	return i + 1;
-	*/
+	std::swap(A[i + 1], A[end]);
+	return i + 1;
 }
 
 void QuickSortLomuto(std::vector<int> &A, int start, int end){
