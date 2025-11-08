@@ -7,7 +7,7 @@ static SDL_Renderer *renderer = NULL;
 
 const int width = N * SCALE, height = N * SCALE;
 const int FRAME_RATE = 60;
-const int FRAME_DELAY = 1000 / FRAME_RATE; // ~16.(6)
+const int FRAME_DELAY = 1000 / FRAME_RATE; // ~16.(6) ms
 
 static int Init() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -192,4 +192,5 @@ int main(int argc, char* argv[]) {
     delete fluid;
     Term();
     return 0;
+
 }
