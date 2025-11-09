@@ -5,6 +5,12 @@
 #include <iostream>
 #include <algorithm>
 
+// --- Always check ---
+// width / N = SCALE
+
+// --- Here ---
+// 640 / 128 = 5
+static const int width = 640, height = 640;
 static const int N = 128;
 static const int SCALE = 5;
 static const int iter_val = 4;
@@ -54,5 +60,6 @@ class FluidCell {
 
         ~FluidCell();
 };
+
 
 #endif
