@@ -5,7 +5,6 @@
 static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
 
-const int width = 640, height = 640;
 const int FRAME_RATE = 60;
 const int FRAME_DELAY = 1000 / FRAME_RATE; // ~16.(6) ms
 
@@ -191,4 +190,5 @@ int main(int argc, char* argv[]) {
     Term();
 
     return 0;
+
 }
