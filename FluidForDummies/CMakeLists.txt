@@ -12,5 +12,4 @@ PRIVATE
 find_package(SDL3)
 target_link_libraries(app PRIVATE SDL3::SDL3)
 target_compile_definitions(app PRIVATE SDL_MAIN_USE_CALLBACKS)
-
 target_link_options(app PRIVATE -static)

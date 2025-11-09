@@ -5,9 +5,9 @@
 #include <iostream>
 #include <algorithm>
 
-const int N = 128;
-const int SCALE = 5;
-const int iter_val = 4;
+static const int N = 128;
+static const int SCALE = 5;
+static const int iter_val = 4;
 
 class FluidCell {
     public:

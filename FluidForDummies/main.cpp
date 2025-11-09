@@ -5,7 +5,7 @@
 static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
 
-const int width = N * SCALE, height = N * SCALE;
+const int width = 640, height = 640;
 const int FRAME_RATE = 60;
 const int FRAME_DELAY = 1000 / FRAME_RATE; // ~16.(6) ms
 
@@ -146,13 +146,13 @@ static void Start(FluidCell* fluid, SDL_Renderer* renderer) {
         // --- Central motion ---
         if (!mousePressed) {
             int cx = int(N / 2.0);
-            int cy = int(N / 2.5);
+            int cy = int(N / 2.0);
             double t = SDL_GetTicks() * 0.001;
             double angle = t * 2.0;
             double vx = std::cos(angle) * 0.5;
             double vy = std::sin(angle) * 0.5;
             fluid->addVelocity(cx, cy, vx, vy);
-            fluid->addDensity(cx, cy, 80.0);
+            fluid->addDensity(cx, cy, 30.0);
         }
 
         // --- Simulation step ---
@@ -176,9 +176,7 @@ static void Start(FluidCell* fluid, SDL_Renderer* renderer) {
 }
 
 int main(int argc, char* argv[]) {
-    if (Init() != 0) {
-        return -1;
-    }
+    if (Init() != 0) return -1;
     
     FluidCell* fluid = nullptr;
     try {
@@ -191,6 +189,6 @@ int main(int argc, char* argv[]) {
     
     delete fluid;
     Term();
-    return 0;
 
+    return 0;
 }
